@@ -1,27 +1,3 @@
-# importation du module csv en python
-import csv
-
-# déclaration de tableau vide pour recevoir les données
-data = []
-
-# Ouverture de notre fichier en mode lecture
-
-f = open(r"/home/biglaye/Documents/Sonatel_academy/PYTHON/PROJET/Données Projet.xlsx - Feuil2.csv")
-myReader = csv.reader(f)
-
-for row in myReader:
-    if row[2] != "" and row[3] != "":
-        data.append(row)
-# data = [row for row in myReader] # creation de notre tableau de donnéés en utilisant les lignes
-
-
-invalide = [data[0]]
-valide = [data[0]]
-
-for elem in data:  # suppression du premier element de chaque ligne
-    del elem[0:1]
-
-
 # verification de la validité du numéro d'étudiant
 def bon_numero(chaine):
     res = False
@@ -147,6 +123,35 @@ def verf(num):
         return True
     else:
         return False
+
+
+
+
+
+# importation du module csv en python
+import csv
+
+# déclaration de tableau vide pour recevoir les données
+data = []
+
+# Ouverture de notre fichier en mode lecture
+
+f = open(r"projet.csv")
+myReader = csv.reader(f)
+
+for row in myReader:
+    if row[2] != "" and row[3] != "":
+        data.append(row)
+# data = [row for row in myReader] # creation de notre tableau de donnéés en utilisant les lignes
+
+
+invalide = [data[0]]
+valide = [data[0]]
+
+for elem in data:  # suppression du premier element de chaque ligne
+    del elem[0:1]
+
+
 
 
 for i in range(1, len(data)):
