@@ -6,7 +6,7 @@ data = []
 
 # Ouverture de notre fichier en mode lecture
 
-f = open(r"/home/biglaye/Documents/Sonatel_academy/PYTHON/PROJET/Données Projet.xlsx - Feuil2.csv")
+f = open(r"projet.csv")
 myReader = csv.reader(f)
 
 for row in myReader:
