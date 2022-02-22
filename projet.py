@@ -125,9 +125,6 @@ def verf(num):
         return False
 
 
-
-
-
 # importation du module csv en python
 import csv
 
@@ -150,9 +147,6 @@ valide = [data[0]]
 
 for elem in data:  # suppression du premier element de chaque ligne
     del elem[0:1]
-
-
-
 
 for i in range(1, len(data)):
     if data[i][5] != "":
@@ -230,64 +224,70 @@ for i in range(len(dico["Numero"])):
         print(c, v[i])
         print("\t")
 
-# ## Affichage des données valide et/ou invalide
-
-
 while True:
     print("""
-    1.Voir les données valides
-    2.Voir les données invalides
-    0.Exit/Quit
-    """)
-    choix = int(input("Que voulez-vous faire ? "))
-    if choix == 2:
-        for elem in invalide:
-            print(elem, end="\n\n")
-    elif choix == 1:
-        for i in range(len(dico["Numero"])):
-            for c, v in dico.items():
-                print (c, v[i])
-                print("\n")
-    elif choix == 0:
-        print("Au revoir !")
+       A. Affichagr des données valide et/ou invalide
+       B. Informations sur un étudiant
+       C. Affichage des cinq premiers
+       0.Exit/Quit
+       """)
+    choix = input("Donner votre choix ")
+    if choix == "A":
+        # ## Affichage des données valide et/ou invalide
+        while True:
+            print("""
+            1.Voir les données valides
+            2.Voir les données invalides
+            0.Revenir en arrière
+            """)
+            choix = int(input("Que voulez-vous faire ? "))
+            if choix == 2:
+                for elem in invalide:
+                    print(elem, end="\n\n")
+            elif choix == 1:
+                for i in range(len(dico["Numero"])):
+                    for c, v in dico.items():
+                        print(c, v[i])
+                        print("\n")
+            elif choix == 0:
+                break
+            else:
+                print("Choix indisponible")
+
+    # ## Afficher d'une information par son numéro
+    elif choix == "B":
+        while True:
+            print("""
+            1.Voir les informations d'un étudiant
+            0.Revenir en arrière
+            """)
+            choix = int(input("Que voulez-vous faire ? "))
+            if choix == 1:
+                inv = [invalide[i][0] for i in range(len(invalide))]
+                num = input("Donner le numéro dont vous voulez voir les informations ")
+                if num in dico["Numero"]:
+                    i = dico["Numero"].index(num)
+                    for c, v in dico.items():
+                        print(c, v[i])
+                elif num in inv:
+                    i = inv.index(num)
+                    print(invalide[i])
+                    print("Ces données sont manquantes et/ou incorret ")
+                else:
+                    print("Le numéro saisi n'est pas dans la base de données")
+            elif choix == 0:
+                break
+    elif choix == "C":
+        # # Affichage des cinq premiers
+        indice = [i for i in range(len(dico["Moyenne general"]))]  # recuperuration de indice des totaux dans dico
+        tup_indice = [(dico["Moyenne general"][i], i) for i in indice]  # tuple des indices de chaque total
+        s = sorted(tup_indice)
+        print("Voici les 5 premier du classement général \n")
+        for i in range(1, 6):
+            pos = s[-i][1]
+            print(dico["Prénom"][pos], dico["Nom"][pos], dico["Classe"][pos], s[-i][0], "de moyenne")
+            print("\n")
+    elif choix == "0":
         break
     else:
         print("Choix indisponible")
-
-# ## Afficher d'une information par son numéro
-
-while True:
-    print("""
-    1.Voir les informations d'un étudiant
-    0.Exit/Quit
-    """)
-    choix = int(input("Que voulez-vous faire ? "))
-    if choix == 1:
-        inv = [invalide[i][0] for i in range(len(invalide))]
-        num = input("Donner le numéro dont vous voulez voir les informations ")
-        if num in dico["Numero"]:
-            i = dico["Numero"].index(num)
-            for c, v in dico.items():
-                        print (c, v[i])
-        elif num in inv:
-            i = inv.index(num)
-            print(invalide[i])
-            print("Ces données sont manquantes et/ou incorret ")
-        else:
-            print("Le numéro saisi n'est pas dans la base de données")
-    elif choix == 0:
-        print("Au revoir !")
-        break
-   
-
-# # Affichage des cinq premiers
-
-
-indice = [i for i in range(len(dico["Moyenne general"]))]  # recuperuration de indice des totaux dans dico
-tup_indice = [(dico["Moyenne general"][i], i) for i in indice]  # tuple des indices de chaque total
-s = sorted(tup_indice)
-print("Voici les 5 premier du classement général \n")
-for i in range(1, 6):
-    pos = s[-i][1]
-    print(dico["Prénom"][pos], dico["Nom"][pos], dico["Classe"][pos], s[-i][0], "de moyenne")
-    print("\n")
