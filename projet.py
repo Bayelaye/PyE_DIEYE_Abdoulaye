@@ -16,7 +16,7 @@ def bon_numero(chaine):
 def valide_nom(prenom, nom):
     count_nom = 0
     count_prenom = 0
-    if (prenom[0].isalpha and nom[0].isalpha):
+    if prenom[0].isalpha and nom[0].isalpha:
         for n in nom:
             if n.isalpha:
                 count_nom += 1
@@ -70,15 +70,15 @@ def note(A):
     for elem in A:
         if elem in sep:
             A = A.replace(elem, "")
-    A = (" ").join(A.split("["))
-    A = (" ").join(A.split("]"))
+    A = " ".join(A.split("["))
+    A = " ".join(A.split("]"))
     A = A.split()
     if len(A) % 2 == 0:
         dct = {A[i]: [(A[i + 1])] for i in range(0, len(A), 2)}
         dic = {}
         for mat in dct:
             s = dct[mat]
-            dic[mat] = [elem for elem in ("").join(s).split(",") if elem != '']
+            dic[mat] = [elem for elem in "".join(s).split(",") if elem != '']
         return dic
     else:
         return B
